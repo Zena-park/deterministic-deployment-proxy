@@ -7,7 +7,9 @@
 		"type": "git",
 		"url": "git@github.com:Zoltu/deterministic-deployment-proxy.git"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"hardhat": "^2.15.0"
+	},
 	"devDependencies": {
 		"@types/elliptic": "6.4.9",
 		"@types/node": "12.6.8",

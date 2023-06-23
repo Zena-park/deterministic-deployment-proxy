@@ -78,8 +78,8 @@ async function writeFactoryDeployerTransaction(contract: CompilerOutputContract)
 	const deploymentBytecode = contract.evm.bytecode.object
 
 	const nonce = new Uint8Array(0)
-	// const gasPrice = arrayFromNumber(100*10**9)
-	const gasPrice = arrayFromNumber(250000)
+	const gasPrice = arrayFromNumber(100*10**9)
+	// const gasPrice = arrayFromNumber(250000)
 	const gasLimit = arrayFromNumber(deploymentGas)
 	const to = new Uint8Array(0)
 	const value = new Uint8Array(0)
@@ -96,7 +96,7 @@ async function writeFactoryDeployerTransaction(contract: CompilerOutputContract)
 //"gasPrice": 100000000000,
 	const filePath = path.join(__dirname, '../output/deployment.json')
 	const fileContents = `{
-	"gasPrice": 250000,
+	"gasPrice": 100000000000,
 	"gasLimit": ${deploymentGas},
 	"signerAddress": "${signerAddress.reduce((x,y)=>x+=y.toString(16).padStart(2, '0'), '')}",
 	"transaction": "${signedEncodedTransaction.reduce((x,y)=>x+=y.toString(16).padStart(2, '0'), '')}",
