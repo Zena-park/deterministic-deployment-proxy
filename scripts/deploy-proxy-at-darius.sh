@@ -3,7 +3,8 @@
 set -x
 
 #JSON_RPC="http://localhost:1234"
-JSON_RPC="https://goerli.optimism.tokamak.network"
+# JSON_RPC="https://goerli.optimism.tokamak.network"
+JSON_RPC="https://rpc.titan.tokamak.network"
 
 # extract the variables we need from json output
 ONE_TIME_SIGNER_ADDRESS="0x$(cat output/deployment.json | jq --raw-output '.signerAddress')"

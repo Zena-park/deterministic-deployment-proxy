@@ -6,6 +6,7 @@
   "integrity" "sha512-AEAZcIZga0JgVMHNtl1CprA/hXX7/wPt79AgR4XqaDt7jyj3QWYw6LPoOiznPtugDmlubUnAahMs2PFxGcQrng=="
   "resolved" "https://registry.npmjs.org/@types/bn.js/-/bn.js-4.11.5.tgz"
   "version" "4.11.5"
+  "resolved" "https://registry.npmjs.org/@chainsafe/persistent-merkle-tree/-/persistent-merkle-tree-0.4.2.tgz"
   dependencies:
     "@types/node" "*"
 
