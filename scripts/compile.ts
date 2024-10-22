@@ -74,11 +74,12 @@ async function writeBytecode(bytecode: string) {
 }
 
 async function writeFactoryDeployerTransaction(contract: CompilerOutputContract) {
-	const deploymentGas = 100000 // actual gas costs last measure: 59159; we don't want to run too close though because gas costs can change in forks and we want our address to be retained
+	// const deploymentGas = 100000 // actual gas costs last measure: 59159; we don't want to run too close though because gas costs can change in forks and we want our address to be retained
+	const deploymentGas = 100000
 	const deploymentBytecode = contract.evm.bytecode.object
 
 	const nonce = new Uint8Array(0)
-	const gasPrice = arrayFromNumber(100*10**9)
+	const gasPrice = arrayFromNumber(1)
 	// const gasPrice = arrayFromNumber(250000)
 	const gasLimit = arrayFromNumber(deploymentGas)
 	const to = new Uint8Array(0)
@@ -92,11 +93,12 @@ async function writeFactoryDeployerTransaction(contract: CompilerOutputContract)
 	const signedEncodedTransaction = rlpEncode([nonce, gasPrice, gasLimit, to, value, data, v, r, s])
 	const hashedSignedEncodedTransaction = new Uint8Array(keccak256.arrayBuffer(unsignedEncodedTransaction))
 	const signerAddress = arrayFromHexString(keccak256(secp256k1.recoverPubKey(hashedSignedEncodedTransaction, { r: r, s: s}, 0).encode('array').slice(1)).slice(-40))
+
 	const contractAddress = arrayFromHexString(keccak256(rlpEncode([signerAddress, nonce])).slice(-40))
 //"gasPrice": 100000000000,
 	const filePath = path.join(__dirname, '../output/deployment.json')
 	const fileContents = `{
-	"gasPrice": 100000000000,
+	"gasPrice": 1,
 	"gasLimit": ${deploymentGas},
 	"signerAddress": "${signerAddress.reduce((x,y)=>x+=y.toString(16).padStart(2, '0'), '')}",
 	"transaction": "${signedEncodedTransaction.reduce((x,y)=>x+=y.toString(16).padStart(2, '0'), '')}",
